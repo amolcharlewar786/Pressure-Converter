@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Pressure Converter</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("pt.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px 0;
+}
+.container {
+    background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(245,245,245,0.95));
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 16px 30px rgba(0,0,0,0.5);
+    max-width: 720px;
+    width: 95%;
+    transition: transform 0.3s ease;
+}
+.container:hover { transform: scale(1.02); }
+.header { text-align: center; }
+.header h2 { color: #0b3c5d; margin: 0; }
+.subtitle { text-align: center; color: #555; font-size: 14px; margin-bottom: 25px; }
+label { font-weight: bold; }
+input, select {
+    width: 100%;
+    padding: 14px;
+    margin-top: 6px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+input:hover, select:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+input:focus, select:focus { border-color: #0b3c5d; outline: none; box-shadow: 0 0 12px rgba(11,60,93,0.4); }
+button {
+    padding: 14px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: 0.3s, transform 0.2s;
+    color: white;
+}
+button:hover { transform: translateY(-2px); }
+.convert-btn { background: linear-gradient(90deg, #0b3c5d, #185a81); width: 100%; margin-top: 10px; }
+.swap-btn { background: linear-gradient(90deg, #4b7f8c, #7fb1c3); }
+.reset-btn { background: linear-gradient(90deg, #c94b4b, #e17f7f); }
+.button-group { display: flex; gap: 10px; margin-bottom: 10px; }
+#output {
+    margin-top: 20px;
+    padding: 16px;
+    background: linear-gradient(120deg, #eef4fa, #dbe8f7);
+    border-left: 5px solid #0b3c5d;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.6s ease, background-color 0.5s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+.copy-btn {
+    background: #0b3c5d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-left: 10px;
+}
+.copy-btn:hover { background: #06273d; }
+#pressureTable {
+    margin-top: 25px;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+#pressureTable th, #pressureTable td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+#pressureTable th { background: #0b3c5d; color: white; }
+#pressureTable td.highlight { background: #d4f5d4; font-weight: bold; }
+.footer { font-size: 12px; color: #777; text-align: center; margin-top: 20px; background: linear-gradient(to right, #eef4fa, #dbe8f7); padding: 6px; border-radius: 8px; }
+@media(max-width:700px){
+    .container { padding: 25px 20px; }
+    input, select { font-size: 14px; padding: 12px; }
+    button { font-size: 15px; padding: 12px; }
+    #output { font-size: 15px; padding: 12px; }
+    #pressureTable th, #pressureTable td { padding: 8px; font-size: 14px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>Pressure Unit Converter</h2>
+    </div>
+    <div class="subtitle">Chemical Engineering Tool</div>
+
+    <label>Pressure Value</label>
+    <input type="number" id="val" placeholder="Enter pressure">
+
+    <label>From Unit</label>
+    <select id="fromUnit">
+        <option value="1">Pa</option>
+        <option value="1000">kPa</option>
+        <option value="1000000">MPa</option>
+        <option value="100000">bar</option>
+        <option value="101325">atm</option>
+        <option value="6894.76">psi</option>
+        <option value="98066.5">kg/cm2</option>
+        <option value="9.80665">kg/m2</option>
+        <option value="133.322">mmHg</option>
+        <option value="133.322">Torr</option>
+        <option value="3386.39">inHg</option>
+        <option value="9.80665">mmWC</option>
+        <option value="249.089">inWC</option>
+    </select>
+
+    <label>To Unit</label>
+    <select id="toUnit">
+        <option value="1">Pa</option>
+        <option value="1000">kPa</option>
+        <option value="1000000">MPa</option>
+        <option value="100000">bar</option>
+        <option value="101325">atm</option>
+        <option value="6894.76">psi</option>
+        <option value="98066.5">kg/cm2</option>
+        <option value="9.80665">kg/m2</option>
+        <option value="133.322">mmHg</option>
+        <option value="133.322">Torr</option>
+        <option value="3386.39">inHg</option>
+        <option value="9.80665">mmWC</option>
+        <option value="249.089">inWC</option>
+    </select>
+
+    <div class="button-group">
+        <button type="button" class="swap-btn" onclick="swapUnits()">Swap Units</button>
+        <button type="button" class="reset-btn" onclick="resetCalculator()">Reset</button>
+    </div>
+
+    <button type="button" class="convert-btn" onclick="convertPressure()">Convert Pressure</button>
+
+    <div id="output">
+        <span>Result will appear here</span>
+        <button class="copy-btn" onclick="copyResult()">Copy</button>
+    </div>
+
+    <!-- Pressure Table -->
+    <table id="pressureTable">
+        <thead>
+            <tr>
+                <th>Unit</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div class="footer">For educational and preliminary design use only</div>
+</div>
+
+<script>
+// Units
+const units = [
+    {name:'Pa', value:1},{name:'kPa', value:1000},{name:'MPa', value:1000000},{name:'bar', value:100000},
+    {name:'atm', value:101325},{name:'psi', value:6894.76},{name:'kg/cm2', value:98066.5},{name:'kg/m2', value:9.80665},
+    {name:'mmHg', value:133.322},{name:'Torr', value:133.322},{name:'inHg', value:3386.39},{name:'mmWC', value:9.80665},
+    {name:'inWC', value:249.089}
+];
+const valInput = document.getElementById("val");
+const fromSelect = document.getElementById("fromUnit");
+const toSelect = document.getElementById("toUnit");
+const output = document.getElementById("output");
+const tableBody = document.querySelector("#pressureTable tbody");
+
+// Event listeners
+valInput.addEventListener("input", updateAll);
+fromSelect.addEventListener("change", updateAll);
+toSelect.addEventListener("change", updateAll);
+
+// Convert
+function convertPressure() {
+    const v = valInput.value;
+    const f = parseFloat(fromSelect.value);
+    const t = parseFloat(toSelect.value);
+    if(v==="") return;
+    const pa = v * f;
+    const result = pa / t;
+    const fromText = fromSelect.options[fromSelect.selectedIndex].text;
+    const toText = toSelect.options[toSelect.selectedIndex].text;
+    output.innerHTML = `<span>${v} ${fromText} = ${result.toFixed(6)} ${toText}</span>
+                        <button class="copy-btn" onclick="copyResult()">Copy</button>`;
+    output.style.opacity = 1;
+    updateTable(pa);
+}
+
+function updateAll() { convertPressure(); }
+function swapUnits() {
+    const temp = fromSelect.value;
+    fromSelect.value = toSelect.value;
+    toSelect.value = temp;
+    updateAll();
+}
+function resetCalculator() {
+    valInput.value = '';
+    fromSelect.selectedIndex = 0;
+    toSelect.selectedIndex = 0;
+    output.innerHTML = '<span>Result will appear here</span><button class="copy-btn" onclick="copyResult()">Copy</button>';
+    output.style.opacity = 0;
+    tableBody.innerHTML = '';
+}
+function copyResult() {
+    const text = document.querySelector("#output span").innerText;
+    navigator.clipboard.writeText(text).then(()=>{alert("Copied: "+text);});
+}
+
+// Table
+function updateTable(paValue){
+    tableBody.innerHTML = '';
+    const toText = toSelect.options[toSelect.selectedIndex].text;
+    units.forEach(u=>{
+        const val = paValue / u.value;
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>${u.name}</td>
+                        <td>${val.toFixed(6)} 
+                        <button class="copy-btn" onclick="copyRow('${val.toFixed(6)} ${u.name}')">Copy</button></td>`;
+        if(u.name === toText) tr.classList.add("highlight");
+        tableBody.appendChild(tr);
+    });
+}
+function copyRow(text){ navigator.clipboard.writeText(text).then(()=>{alert("Copied: "+text);}); }
+
+</script>
+</body>
+</html>
