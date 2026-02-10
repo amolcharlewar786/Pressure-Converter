@@ -1,0 +1,78 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f2f4f6;
+  color: #333;
+}
+
+/* Header */
+.top-header {
+  background-color: #0f3b5f;
+  color: #fff;
+  padding: 30px 15px;
+  text-align: center;
+}
+
+.top-header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.top-header p {
+  margin-top: 8px;
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+/* Cards layout */
+.cards-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+/* Card */
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #0f3b5f;
+}
+
+.card p {
+  font-size: 14px;
+  margin: 15px 0 25px;
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  padding: 8px 18px;
+  background-color: #0f3b5f;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.btn:hover {
+  background-color: #0c2f4a;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 15px;
+  font-size: 13px;
+  background-color: #e6e6e6;
+  color: #555;
+}
