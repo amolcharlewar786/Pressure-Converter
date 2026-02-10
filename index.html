@@ -1,141 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Engineering Calculations Hub</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    background: #0b3c5d;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-header h1 {
-    margin: 0;
-}
-
-.container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 20px;
-}
-
-.section-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-}
-
-.card {
-    background: white;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-    transition: transform 0.2s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-.card h2 {
-    margin-top: 0;
-    color: #0b3c5d;
-}
-
-.card p {
-    color: #555;
-    font-size: 14px;
-}
-
-.card a {
-    display: inline-block;
-    margin-top: 12px;
-    padding: 8px 16px;
-    background: #0b3c5d;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-.card a:hover {
-    background: #092f49;
-}
-
-footer {
-    text-align: center;
-    padding: 15px;
-    background: #eaeaea;
-    font-size: 13px;
-    color: #555;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>Engineering Calculations Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/style.css">
 </head>
-
 <body>
 
-<header>
+  <!-- Header -->
+  <header class="top-header">
     <h1>Engineering Calculations Hub</h1>
     <p>Chemical & Mechanical Engineering Calculation Tools</p>
-</header>
+  </header>
 
-<div class="container">
-    <div class="section-grid">
+  <!-- Cards Section -->
+  <main class="cards-container">
 
-        <div class="card">
-            <h2>Heat Transfer</h2>
-            <p>Conduction, convection, radiation and heat exchanger calculations</p>
-            <a href="#">Open</a>
-        </div>
-
-        <div class="card">
-            <h2>Mass Transfer</h2>
-            <p>Diffusion, mass flux and transfer coefficient calculations</p>
-            <a href="#">Open</a>
-        </div>
-
-        <div class="card">
-            <h2>Fluid Mechanics</h2>
-            <p>Reynolds number, pressure drop, friction factor</p>
-            <a href="#">Open</a>
-        </div>
-
-        <div class="card">
-            <h2>Thermodynamics</h2>
-            <p>Property estimation, cycles, energy balance</p>
-            <a href="#">Open</a>
-        </div>
-
-        <div class="card">
-            <h2>Unit Converters</h2>
-            <p>Pressure, temperature, flow, energy conversions</p>
-            <a href="pressure/index.html">Open</a>
-        </div>
-
-        <div class="card">
-            <h2>Other Tools</h2>
-            <p>Future calculators, math tools, utilities</p>
-            <a href="#">Open</a>
-        </div>
-
+    <div class="card">
+      <h2>Heat Transfer</h2>
+      <p>Conduction, convection, radiation and heat exchanger calculations</p>
+      <a href="#" class="btn">Open</a>
     </div>
-</div>
 
-<footer>
+    <div class="card">
+      <h2>Mass Transfer</h2>
+      <p>Diffusion, mass flux and transfer coefficient calculations</p>
+      <a href="#" class="btn">Open</a>
+    </div>
+
+    <div class="card">
+      <h2>Fluid Mechanics</h2>
+      <p>Reynolds number, pressure drop, friction factor</p>
+      <a href="#" class="btn">Open</a>
+    </div>
+
+    <div class="card">
+      <h2>Thermodynamics</h2>
+      <p>Property estimation, cycles, energy balance</p>
+      <a href="#" class="btn">Open</a>
+    </div>
+
+    <div class="card">
+      <h2>Unit Converters</h2>
+      <p>Pressure, temperature, flow, energy conversions</p>
+      <a href="unit-converters/pressure.html" class="btn">Open</a>
+    </div>
+
+    <div class="card">
+      <h2>Other Tools</h2>
+      <p>Future calculators, math tools, utilities</p>
+      <a href="#" class="btn">Open</a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
     © 2025 Engineering Calculations Hub
-</footer>
+  </footer>
 
 </body>
 </html>
